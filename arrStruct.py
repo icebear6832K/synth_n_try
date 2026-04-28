@@ -1,3 +1,22 @@
+"""
+Array-structure helper module.
+
+This module defines a small NumPy ndarray subclass pattern used by the rest of
+this prototype. `ArrStruct` allows compact vector-like objects to behave like
+NumPy arrays while still exposing named accessors in subclasses.
+
+In the current project, this is mainly used by `PAPoint`, which represents a
+pitch-amplitude vector. `SampleObj` is only a minimal example showing how a
+custom array object can expose semantic fields such as `a()`, `b()`, and `c()`.
+
+Typical use:
+    from arrStruct import ArrStruct
+
+    class MyPoint(ArrStruct):
+        def __new__(cls, x, y):
+            obj = np.asarray([x, y]).view(cls)
+            return obj
+"""
 import numpy as np
 
 class ArrStruct(np.ndarray):
