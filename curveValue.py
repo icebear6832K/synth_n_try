@@ -1,3 +1,25 @@
+"""
+Composable pitch-amplitude curve objects.
+
+This module defines the lower-level transformation layer of the event framework.
+A `CurveValue` describes how a pitch-amplitude vector changes over normalized
+time. Curves are treated as composable descriptions of modification applied to a
+more basic sonic existence-state.
+
+The module includes fixed, linear, Bezier, cosine, cropped, joint, and overlaid
+curves. Curve-level overlay with `*` packages multiple curve transformations into
+one curve object, so the event layer can treat the result as an ordinary curve.
+Sequential connection with `+` joins continuous curves across time.
+
+Typical use:
+    from curveValue import fxv, lnv
+    from pAPoint import p_point, a_point, pa_point
+
+    constant = fxv(pa_point(0, -2))
+    glide = lnv(pa_point(0, -3), pa_point(12, -3))
+    shaped = constant * glide
+    data = shaped.arr(100)
+"""
 import numpy as np
 import matplotlib.pyplot as plt
 from abc import ABC, abstractmethod
