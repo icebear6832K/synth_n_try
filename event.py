@@ -1,3 +1,32 @@
+"""
+Event-based sound synthesis and compositional structure.
+
+This module defines the main event layer of the prototype. An `Event` is a
+compositional unit that can render pitch-amplitude trajectories, flatten nested
+structures, visualize data, and synthesize audio.
+
+The framework treats sound as a vectorized event structure. A curve or event is
+understood as a description of how a more basic sonic existence-state is
+modified across time. Events can be joined sequentially, combined simultaneously,
+overlaid, looped, and grown into higher structural scales.
+
+Current implementation scope:
+    T -> (P, A)
+
+Each time point maps to a pitch-amplitude pair. Future extensions may support
+spectral/noise-field events of the form:
+    T -> (P -> A)
+
+Typical use:
+    from event import SingleSignalEvent
+    from curveValue import lnv
+    from pAPoint import pa_point
+
+    curve = lnv(pa_point(0, -3), pa_point(12, -3))
+    event = SingleSignalEvent(curve)
+    event.show(duration=200)
+    event.synth(duration_second=2)
+"""
 from __future__ import annotations
 from abc import ABC, abstractmethod
 import numpy as np
