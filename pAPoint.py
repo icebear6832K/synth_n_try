@@ -1,3 +1,23 @@
+"""
+Pitch-amplitude vector representation.
+
+This module defines `PAPoint`, the basic vector object used by the sound event
+system. A point contains two values: pitch and amplitude. Pitch is interpreted as
+a semitone-like value during rendering, while amplitude is interpreted as a
+logarithmic value and later converted into linear signal amplitude.
+
+A `PAPoint` can be understood as a local modification vector applied to the
+basic sonic existence-state. Helper constructors make it easy to create pure
+pitch changes, pure amplitude changes, or combined pitch-amplitude points.
+
+Typical use:
+    from pAPoint import e_point, p_point, a_point, pa_point, pa_sum
+
+    neutral = e_point()          # PAPoint(0, 0)
+    up_octave = p_point(12)      # pitch +12, amplitude unchanged
+    quieter = a_point(-2)        # amplitude lowered by 2 log units
+    combined = pa_sum([up_octave, quieter])
+"""
 from arrStruct import ArrStruct
 import numpy as np
 
