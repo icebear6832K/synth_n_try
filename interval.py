@@ -1,3 +1,23 @@
+"""
+Absolute and relative interval system for nested event time.
+
+This module defines the time-structure layer of the event framework. It provides
+absolute intervals, relative intervals, and reference points that can be mapped
+into one another. The goal is to make time itself compositional, so an event can
+contain smaller events whose internal proportions are preserved inside a larger
+parent interval.
+
+`AbsInterval` represents a concrete time range. `RelativeInterval` represents a
+range relative to another interval. `RefPointObj` represents a reusable reference
+point such as the beginning, middle, end, or an offset/between relation.
+
+Typical use:
+    from interval import aitv, ritv, rf
+
+    parent = aitv(0, 100)
+    first_half = ritv(0, 0.5) * parent
+    middle = rf(0.5) * parent
+"""
 from __future__ import annotations
 from types import NoneType
 from typing import Callable, Tuple, Union, List
