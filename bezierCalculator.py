@@ -1,3 +1,22 @@
+"""
+Bezier curve calculation utilities.
+
+This module provides cubic Bezier sampling tools for normalized curve segments.
+The framework uses these functions to describe shaped parameter transitions,
+such as non-linear pitch motion, amplitude envelopes, or other gesture-like
+changes over normalized time.
+
+The main public object is `BezierSegment`, which stores two control points and
+can return either a full sampled curve or a cropped segment. Helper constructors
+such as `s_curve()` and `c_curve()` provide commonly useful curve shapes.
+
+Typical use:
+    from bezierCalculator import BezierSegment, s_curve
+
+    segment = s_curve()
+    values = segment.arr(100)      # 100 y-values sampled by uniform x-position
+    value = segment.idx(0.5)       # y-value at normalized x = 0.5
+"""
 import matplotlib.pyplot as plt
 import numpy as np
 
