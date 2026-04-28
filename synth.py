@@ -1,3 +1,24 @@
+"""
+Low-level sine-wave synthesis and WAV export helpers.
+
+This module converts frequency and amplitude arrays into raw sine-wave audio
+and saves generated signals as WAV files. It is used by the event layer after
+pitch-amplitude event data has been rendered and interpolated to audio sample
+rate.
+
+The synthesis here is intentionally simple: it generates phase-continuous sine
+waves from per-sample frequency and amplitude arrays, applies a short default
+amplitude envelope to reduce clicks, and writes normalized audio to disk.
+
+Typical use:
+    from synth import generate_raw_sine_wave, save_wav, SR
+    import numpy as np
+
+    freq = np.full(SR, 440.0)
+    amp = np.full(SR, 0.5)
+    wave = generate_raw_sine_wave(freq, amp)
+    save_wav(wave, 'example')
+"""
 import numpy as np
 from scipy.io.wavfile import write
 import os
