@@ -1,4 +1,4 @@
-# synth_n_try
+# EVENT.py
 
 An experimental prototype for **event-based sound synthesis and compositional structure**.
 
